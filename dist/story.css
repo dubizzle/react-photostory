@@ -1,0 +1,41 @@
+.react-story {
+  font-family: sans-serif; }
+  .react-story.open {
+    position: fixed;
+    overflow: hidden;
+    background-color: #000000;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 99; }
+    .react-story.open .swipe-wrapper {
+      width: 100%;
+      top: 50%;
+      position: absolute; }
+    .react-story.open .rs-swipe-gallery {
+      background-color: #000000; }
+  .react-story .rs-header {
+    color: #fff;
+    font-size: 20px;
+    padding: 15px;
+    text-align: center; }
+  .react-story .rs-close {
+    position: absolute;
+    color: #ffffff;
+    font-size: 20px;
+    margin: 16px;
+    right: 0; }
+  .react-story .rs-footer {
+    color: #ffffff;
+    position: absolute;
+    bottom: 0;
+    padding: 14px;
+    text-align: center;
+    width: 100%;
+    font-size: 20px;
+    box-sizing: border-box; }
+  .react-story .rs-pan-image {
+    position: absolute;
+    top: 50%;
+    display: none; }

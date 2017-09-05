@@ -21,6 +21,7 @@ export default class Story extends Component {
   handleClick ({ index, length, title, subTitle, image, data }) {
     const { isOpen } = this.state
     if (!isOpen) {
+      document.getElementsByTagName('html')[0].style.overflow = 'hidden';
       this.data = data
       this.setState(
         { isOpen: true, length, currentIndex: index, title, subTitle },
@@ -31,9 +32,10 @@ export default class Story extends Component {
 
       this.props.onOpen({ index, title, subTitle, data })
     } else {
-      this.setState({
-        panImageUrl: image
-      })
+      document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+      // this.setState({
+      //   panImageUrl: image
+      // })
     }
   }
 
