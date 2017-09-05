@@ -34,6 +34,8 @@ export default class Swipe extends Component {
 
   componentDidMount () {
     window.addEventListener('orientationchange', this.doOnOrientationChange)
+    window.onresize = function () { this.doOnOrientationChange() }
+
     this.doOnOrientationChange()
     this.setWidth()
     this.initLazyLoad()

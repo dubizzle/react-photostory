@@ -72,6 +72,10 @@ var Swipe = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       window.addEventListener('orientationchange', this.doOnOrientationChange);
+      window.onresize = function () {
+        this.doOnOrientationChange();
+      };
+
       this.doOnOrientationChange();
       this.setWidth();
       this.initLazyLoad();
