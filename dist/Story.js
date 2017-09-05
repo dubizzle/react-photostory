@@ -62,11 +62,11 @@ var Story = function (_Component) {
     value: function doOnOrientationChange() {
       switch (window.orientation) {
         case -90 || 90:
-          //'landscape'
+          // 'landscape'
           this.forceUpdate();
           break;
         default:
-          //'portrait'
+          // 'portrait'
           this.forceUpdate();
           break;
       }
@@ -85,7 +85,7 @@ var Story = function (_Component) {
       var isOpen = this.state.isOpen;
 
       if (!isOpen) {
-        document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+        this.toggleBackgroundScrolling(true);
         this.data = data;
         this.setState({ isOpen: true, length: length, currentIndex: index, title: title, subTitle: subTitle }, function () {
           document.body.style.overflow = _this2.state.isOpen ? 'hidden' : null;
@@ -115,11 +115,23 @@ var Story = function (_Component) {
       this.setState({ panImageUrl: false });
     }
   }, {
+    key: 'toggleBackgroundScrolling',
+    value: function toggleBackgroundScrolling(toggle) {
+      if (toggle) {
+        document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+        document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+        document.getElementsByTagName('body')[0].style.position = 'relative';
+      } else {
+        document.getElementsByTagName('html')[0].style.overflow = 'auto';
+        document.getElementsByTagName('body')[0].style.overflow = 'auto';
+      }
+    }
+  }, {
     key: 'closeModal',
     value: function closeModal() {
       var _this3 = this;
 
-      document.getElementsByTagName('html')[0].style.overflow = 'auto';
+      this.toggleBackgroundScrolling(false);
       this.setState({
         isOpen: false
       }, function () {

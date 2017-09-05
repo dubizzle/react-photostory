@@ -18,28 +18,28 @@ export default class Story extends Component {
     autoBind(this)
   }
 
-  componentDidMount() {      
-    window.addEventListener('orientationchange', this.doOnOrientationChange);
-    this.doOnOrientationChange();
+  componentDidMount () {
+    window.addEventListener('orientationchange', this.doOnOrientationChange)
+    this.doOnOrientationChange()
   }
 
-  doOnOrientationChange() {
-    switch(window.orientation) {  
+  doOnOrientationChange () {
+    switch (window.orientation) {
       case -90 || 90:
-        //'landscape'
+        // 'landscape'
         this.forceUpdate()
-        break; 
+        break
       default:
-        //'portrait'
+        // 'portrait'
         this.forceUpdate()
-        break; 
+        break
     }
-  }  
+  }
 
   handleClick ({ index, length, title, subTitle, image, data }) {
     const { isOpen } = this.state
     if (!isOpen) {
-      document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+      this.toggleBackgroundScrolling(true)
       this.data = data
       this.setState(
         { isOpen: true, length, currentIndex: index, title, subTitle },
@@ -65,8 +65,19 @@ export default class Story extends Component {
     this.setState({ panImageUrl: false })
   }
 
+  toggleBackgroundScrolling (toggle) {
+    if (toggle) {
+      document.getElementsByTagName('html')[0].style.overflow = 'hidden'
+      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
+      document.getElementsByTagName('body')[0].style.position = 'relative'
+    } else {
+      document.getElementsByTagName('html')[0].style.overflow = 'auto'
+      document.getElementsByTagName('body')[0].style.overflow = 'auto'
+    }
+  }
+
   closeModal () {
-    document.getElementsByTagName('html')[0].style.overflow = 'auto'
+    this.toggleBackgroundScrolling(false)
     this.setState(
       {
         isOpen: false
