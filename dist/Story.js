@@ -55,7 +55,15 @@ var Story = function (_Component) {
     key: 'componentDidMount',
     value: function componentDidMount() {
       window.addEventListener('orientationchange', this.doOnOrientationChange);
+      window.onresize = function () {
+        this.doOnOrientationChange();
+      };
       this.doOnOrientationChange();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.toggleBackgroundScrolling(false);
     }
   }, {
     key: 'doOnOrientationChange',
@@ -130,7 +138,7 @@ var Story = function (_Component) {
         document.getElementsByTagName('body')[0].style.overflow = 'hidden';
         document.getElementsByTagName('body')[0].style.position = 'relative';
       } else {
-        window.removeEventListener('scroll', this.preventMotion, false);
+        window.removeEventListener('scroll', this.preventMotion);
         document.getElementsByTagName('html')[0].style.overflow = 'auto';
         document.getElementsByTagName('body')[0].style.overflow = 'auto';
       }

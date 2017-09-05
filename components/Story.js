@@ -20,7 +20,11 @@ export default class Story extends Component {
 
   componentDidMount () {
     window.addEventListener('orientationchange', this.doOnOrientationChange)
+    window.onresize = function () { this.doOnOrientationChange() }
     this.doOnOrientationChange()
+  }
+  componentWillUnmount () {
+    this.toggleBackgroundScrolling(false)
   }
 
   doOnOrientationChange () {
@@ -78,7 +82,7 @@ export default class Story extends Component {
       document.getElementsByTagName('body')[0].style.overflow = 'hidden'
       document.getElementsByTagName('body')[0].style.position = 'relative'
     } else {
-      window.removeEventListener('scroll', this.preventMotion, false)
+      window.removeEventListener('scroll', this.preventMotion)
       document.getElementsByTagName('html')[0].style.overflow = 'auto'
       document.getElementsByTagName('body')[0].style.overflow = 'auto'
     }
