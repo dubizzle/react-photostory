@@ -58,11 +58,13 @@ var Swipe = function (_Component) {
       switch (window.orientation) {
         case -90 || 90:
           // 'landscape'
-          this.forceUpdate();
+          this.setWidth();
+          this.initLazyLoad();
           break;
         default:
           // 'portrait'
-          this.forceUpdate();
+          this.setWidth();
+          this.initLazyLoad();
           break;
       }
     }
