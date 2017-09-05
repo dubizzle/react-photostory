@@ -18,15 +18,6 @@ export default class Story extends Component {
     autoBind(this)
   }
 
-  componentDidMount () {
-    window.addEventListener('orientationchange', this.doOnOrientationChange)
-    window.onresize = function () { this.doOnOrientationChange() }
-    this.doOnOrientationChange()
-  }
-  componentWillUnmount () {
-    this.toggleBackgroundScrolling(false)
-  }
-
   doOnOrientationChange () {
     switch (window.orientation) {
       case -90 || 90:
@@ -38,6 +29,15 @@ export default class Story extends Component {
         this.forceUpdate()
         break
     }
+  }
+
+  componentDidMount () {
+    window.addEventListener('orientationchange', this.doOnOrientationChange)
+    this.doOnOrientationChange()
+  }
+
+  componentWillUnmount () {
+    this.toggleBackgroundScrolling(false)
   }
 
   handleClick ({ index, length, title, subTitle, image, data }) {

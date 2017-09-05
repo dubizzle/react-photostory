@@ -52,20 +52,6 @@ var Story = function (_Component) {
   }
 
   _createClass(Story, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      window.addEventListener('orientationchange', this.doOnOrientationChange);
-      window.onresize = function () {
-        this.doOnOrientationChange();
-      };
-      this.doOnOrientationChange();
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.toggleBackgroundScrolling(false);
-    }
-  }, {
     key: 'doOnOrientationChange',
     value: function doOnOrientationChange() {
       switch (window.orientation) {
@@ -78,6 +64,17 @@ var Story = function (_Component) {
           this.forceUpdate();
           break;
       }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.addEventListener('orientationchange', this.doOnOrientationChange);
+      this.doOnOrientationChange();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.toggleBackgroundScrolling(false);
     }
   }, {
     key: 'handleClick',

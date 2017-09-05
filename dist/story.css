@@ -25,7 +25,8 @@
     color: #ffffff;
     font-size: 20px;
     margin: 16px;
-    right: 0; }
+    right: 0;
+    z-index: 1; }
   .react-story .rs-footer {
     color: #ffffff;
     position: absolute;
