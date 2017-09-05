@@ -53,8 +53,24 @@ var Swipe = function (_Component) {
   }
 
   _createClass(Swipe, [{
+    key: 'doOnOrientationChange',
+    value: function doOnOrientationChange() {
+      switch (window.orientation) {
+        case -90 || 90:
+          // 'landscape'
+          this.forceUpdate();
+          break;
+        default:
+          // 'portrait'
+          this.forceUpdate();
+          break;
+      }
+    }
+  }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      window.addEventListener('orientationchange', this.doOnOrientationChange);
+      this.doOnOrientationChange();
       this.setWidth();
       this.initLazyLoad();
 
