@@ -52,6 +52,26 @@ var Story = function (_Component) {
   }
 
   _createClass(Story, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.addEventListener('orientationchange', this.doOnOrientationChange);
+      this.doOnOrientationChange();
+    }
+  }, {
+    key: 'doOnOrientationChange',
+    value: function doOnOrientationChange() {
+      switch (window.orientation) {
+        case -90 || 90:
+          //'landscape'
+          this.forceUpdate();
+          break;
+        default:
+          //'portrait'
+          this.forceUpdate();
+          break;
+      }
+    }
+  }, {
     key: 'handleClick',
     value: function handleClick(_ref) {
       var _this2 = this;
@@ -73,7 +93,6 @@ var Story = function (_Component) {
 
         this.props.onOpen({ index: index, title: title, subTitle: subTitle, data: data });
       } else {
-        document.getElementsByTagName('html')[0].style.overflow = 'hidden';
         // this.setState({
         //   panImageUrl: image
         // })
@@ -100,6 +119,7 @@ var Story = function (_Component) {
     value: function closeModal() {
       var _this3 = this;
 
+      document.getElementsByTagName('html')[0].style.overflow = 'auto';
       this.setState({
         isOpen: false
       }, function () {
