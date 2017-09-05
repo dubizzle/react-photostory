@@ -18,6 +18,24 @@ export default class Story extends Component {
     autoBind(this)
   }
 
+  componentDidMount() {      
+    window.addEventListener('orientationchange', this.doOnOrientationChange);
+    this.doOnOrientationChange();
+  }
+
+  doOnOrientationChange() {
+    switch(window.orientation) {  
+      case -90 || 90:
+        //'landscape'
+        this.forceUpdate()
+        break; 
+      default:
+        //'portrait'
+        this.forceUpdate()
+        break; 
+    }
+  }  
+
   handleClick ({ index, length, title, subTitle, image, data }) {
     const { isOpen } = this.state
     if (!isOpen) {
