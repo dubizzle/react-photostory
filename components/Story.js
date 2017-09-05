@@ -65,12 +65,20 @@ export default class Story extends Component {
     this.setState({ panImageUrl: false })
   }
 
+  preventMotion (event) {
+    window.scrollTo(0, 0)
+    event.preventDefault()
+    event.stopPropagation()
+  }
+
   toggleBackgroundScrolling (toggle) {
     if (toggle) {
+      window.addEventListener('scroll', this.preventMotion, false)
       document.getElementsByTagName('html')[0].style.overflow = 'hidden'
       document.getElementsByTagName('body')[0].style.overflow = 'hidden'
       document.getElementsByTagName('body')[0].style.position = 'relative'
     } else {
+      window.removeEventListener('scroll', this.preventMotion, false)
       document.getElementsByTagName('html')[0].style.overflow = 'auto'
       document.getElementsByTagName('body')[0].style.overflow = 'auto'
     }
