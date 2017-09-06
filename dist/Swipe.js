@@ -71,9 +71,11 @@ var Swipe = function (_Component) {
   }, {
     key: 'componentDidMount',
     value: function componentDidMount() {
+      var _this2 = this;
+
       window.addEventListener('orientationchange', this.doOnOrientationChange);
       window.onresize = function () {
-        this.doOnOrientationChange();
+        _this2.doOnOrientationChange();
       };
 
       this.doOnOrientationChange();
@@ -112,7 +114,7 @@ var Swipe = function (_Component) {
   }, {
     key: 'handleTouchEnd',
     value: function handleTouchEnd() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (this.hasSingleImage()) return;
       var _state = this.state,
@@ -131,14 +133,14 @@ var Swipe = function (_Component) {
               // goto previous slide
               currentIndex: currentIndex - 1
             };
-          } else if (drag > 0 && currentIndex + 1 < _this2.props.children.length) {
+          } else if (drag > 0 && currentIndex + 1 < _this3.props.children.length) {
             return {
               // goto next slide
               currentIndex: currentIndex + 1
             };
           }
         }, function () {
-          _this2.onChange(initialIndex);
+          _this3.onChange(initialIndex);
         });
       }
 
@@ -196,7 +198,7 @@ var Swipe = function (_Component) {
   }, {
     key: 'gotoSlide',
     value: function gotoSlide(i) {
-      var _this3 = this;
+      var _this4 = this;
 
       var isManual = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
@@ -205,13 +207,13 @@ var Swipe = function (_Component) {
       this.setState({
         currentIndex: i
       }, function () {
-        return _this3.onChange(initial);
+        return _this4.onChange(initial);
       });
     }
   }, {
     key: 'autoPlay',
     value: function autoPlay(props) {
-      var _this4 = this;
+      var _this5 = this;
 
       var children = props.children,
           autoPlayInterval = props.autoPlayInterval;
@@ -221,12 +223,12 @@ var Swipe = function (_Component) {
       if (this.hasSingleImage()) return;
 
       this.autoPlayId = setInterval(function () {
-        var currentIndex = _this4.state.currentIndex;
+        var currentIndex = _this5.state.currentIndex;
 
         if (currentIndex + 1 < children.length) {
-          _this4.gotoNext();
+          _this5.gotoNext();
         } else {
-          _this4.gotoSlide(0, currentIndex);
+          _this5.gotoSlide(0, currentIndex);
         }
       }, autoPlayInterval);
     }
@@ -279,7 +281,7 @@ var Swipe = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this5 = this;
+      var _this6 = this;
 
       var _props2 = this.props,
           className = _props2.className,
@@ -336,7 +338,7 @@ var Swipe = function (_Component) {
           {
             className: 'rs-swipe-gallery',
             ref: function ref(swipe) {
-              return _this5.swipeRef = swipe;
+              return _this6.swipeRef = swipe;
             },
             style: { height: height }
           },
