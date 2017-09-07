@@ -23,11 +23,13 @@ export default class Swipe extends Component {
         // 'landscape'
         this.setWidth()
         this.initLazyLoad()
+        this.forceUpdate()
         break
       default:
         // 'portrait'
         this.setWidth()
         this.initLazyLoad()
+        this.forceUpdate()
         break
     }
   }
