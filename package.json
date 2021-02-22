@@ -73,7 +73,7 @@
     "react-lazy-card": "^0.1.5",
     "rimraf": "^2.5.4",
     "sass-loader": "^6.0.6",
-    "semantic-release": "^6.3.6",
+    "semantic-release": "^17.2.3",
     "sinon": "^2.3.7"
   },
   "dependencies": {
